@@ -1,0 +1,7 @@
+{
+  "jobs": [
+    { "id": 1, "title": "Développeur Vue.js", "description": "Développement d'interfaces web avec Vue 3 et Vue Router.", "salary": 12000, "createdAt": "2026-09-15", "experience": 2 },
+    { "id": 2, "title": "Ingénieur DevOps", "description": "Mise en place de pipelines CI/CD et gestion de l'infrastructure cloud.", "salary": 16000, "createdAt": "2026-09-28", "experience": 4 },
+    { "id": 3, "title": "Data Analyst", "description": "Analyse de données, tableaux de bord et reporting.", "salary": 10000, "createdAt": "2026-10-05", "experience": 1 }
+  ]
+}

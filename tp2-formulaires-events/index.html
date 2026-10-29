@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TP2 - Catalogue de livres (formulaires & événements)</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <h1>Catalogue de livres</h1>
+
+    <!-- 1. Ajouter un livre : @submit.prevent évite le rechargement de la page -->
+    <form @submit.prevent="ajouterLivre">
+      <!-- Bonus : .trim sur title -->
+      <input type="text" v-model.trim="newBook.title" placeholder="Titre" />
+      <!-- Bonus : .lazy sur author (synchronisé à la perte de focus) -->
+      <input type="text" v-model.lazy="newBook.author" placeholder="Auteur" />
+      <input type="number" v-model.number="newBook.year" placeholder="Année" />
+      <select v-model="newBook.genre">
+        <option value="">-- Genre --</option>
+        <option>Génie logiciel</option>
+        <option>Algorithmique</option>
+        <option>Réseaux</option>
+        <option>Bases de données</option>
+        <option>Autre</option>
+      </select>
+      <label><input type="checkbox" v-model="newBook.isFav" /> Favori</label>
+
+      <!-- 5. Mots-clés : validation au clavier avec @keyup.enter -->
+      <div class="keywords-field">
+        <input
+          type="text"
+          v-model="nouveauMotCle"
+          placeholder="Mot-clé (Entrée pour ajouter)"
+          @keydown.enter.prevent
+          @keyup.enter="ajouterMotCle"
+        />
+        <span class="chip" v-for="mot in newBook.keywords" :key="mot">
+          {{ mot }}
+          <button type="button" @click="retirerMotCle(mot)">×</button>
+        </span>
+      </div>
+
+      <!-- 2. Bouton désactivé tant que le formulaire est invalide -->
+      <button type="submit" :disabled="!formulaireValide">Ajouter</button>
+    </form>
+
+    <!-- 3 & 4. Liste des livres -->
+    <p v-if="books.length === 0" class="loading">Aucun livre dans le catalogue.</p>
+    <div
+      class="book"
+      v-for="book in books"
+      :key="book.id"
+      :class="{ favori: book.isFav }"
+      @click="toggleFavori(book)"
+    >
+      <h3>{{ book.title }}</h3>
+      <p>{{ book.author }} — {{ book.year }} <em v-if="book.genre">({{ book.genre }})</em></p>
+      <span class="badge-favori" v-if="book.isFav">Favori</span>
+      <div>
+        <span class="chip" v-for="mot in book.keywords" :key="mot">{{ mot }}</span>
+      </div>
+      <!-- .stop empêche le clic de "remonter" jusqu'à la carte (toggleFavori) -->
+      <button @click.stop="supprimerLivre(book)">Supprimer</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

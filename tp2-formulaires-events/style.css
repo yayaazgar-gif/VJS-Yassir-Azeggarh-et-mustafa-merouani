@@ -1,0 +1,10 @@
+body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; color: #1b2430; }
+.loading { color: #5b6572; font-style: italic; }
+.book { border: 1px solid #dde1d9; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; cursor: pointer; }
+.favori { border-color: #caa53d; background: #fbf6e6; }
+.badge-favori { display: inline-block; background: #caa53d; color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 999px; }
+form { border: 1px solid #dde1d9; border-radius: 8px; padding: 16px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.keywords-field { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chip { display: inline-flex; align-items: center; gap: 4px; background: #e6f2ec; color: #2f8f66; border-radius: 999px; padding: 2px 10px; font-size: 13px; margin: 2px 4px 2px 0; }
+.chip button { border: none; background: none; cursor: pointer; color: inherit; padding: 0; font-size: 14px; }
+button:disabled { opacity: .5; cursor: not-allowed; }
